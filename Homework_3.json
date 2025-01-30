@@ -1,1 +1,834 @@
 
+	
+flowContents	
+identifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+instanceIdentifier	"af14d527-0194-1000-985e-f4f0b01e1a1e"
+name	"Homework_2"
+comments	""
+position	
+x	-576
+y	-264
+processGroups	[]
+remoteProcessGroups	[]
+processors	
+0	
+identifier	"4b6196da-eeda-387e-9582-8b78f7948b41"
+instanceIdentifier	"b47795d7-0194-1000-b908-f5f551f96f64"
+name	"UpdateRecord"
+comments	""
+position	
+x	-128
+y	-88
+type	"org.apache.nifi.processors.standard.UpdateRecord"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-standard-nar"
+version	"2.1.0"
+properties	
+Record Writer	"a063b5e1-5c63-3a88-a324-88701d9dfb77"
+/noted_date	"${field.value:toDate('dd-MM-yyyy HH:mm'):format('yyyy-MM-dd')}"
+Record Reader	"5ce65569-744f-3e8b-84fe-7ad769879a19"
+Replacement Value Strategy	"literal-value"
+propertyDescriptors	
+Record Writer	
+name	"Record Writer"
+displayName	"Record Writer"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+/noted_date	
+name	"/noted_date"
+displayName	"/noted_date"
+identifiesControllerService	false
+sensitive	false
+dynamic	true
+Record Reader	
+name	"Record Reader"
+displayName	"Record Reader"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+Replacement Value Strategy	
+name	"Replacement Value Strategy"
+displayName	"Replacement Value Strategy"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+style	{}
+schedulingPeriod	"0 sec"
+schedulingStrategy	"TIMER_DRIVEN"
+executionNode	"ALL"
+penaltyDuration	"30 sec"
+yieldDuration	"1 sec"
+bulletinLevel	"WARN"
+runDurationMillis	0
+concurrentlySchedulableTaskCount	1
+autoTerminatedRelationships	
+0	"failure"
+scheduledState	"ENABLED"
+retryCount	10
+retriedRelationships	[]
+backoffMechanism	"PENALIZE_FLOWFILE"
+maxBackoffPeriod	"10 mins"
+componentType	"PROCESSOR"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+1	
+identifier	"05431c84-90ff-35a8-a889-d52f14d445fa"
+instanceIdentifier	"af2702e4-0194-1000-39b5-5f61e78df7c8"
+name	"QueryRecord"
+comments	""
+position	
+x	-136
+y	152
+type	"org.apache.nifi.processors.standard.QueryRecord"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-standard-nar"
+version	"2.1.0"
+properties	
+dbf-default-precision	"10"
+in_only	`SELECT * FROM FLOWFILE WHERE "out/in" = 'In'`
+record-writer	"a063b5e1-5c63-3a88-a324-88701d9dfb77"
+record-reader	"5ce65569-744f-3e8b-84fe-7ad769879a19"
+include-zero-record-flowfiles	"true"
+min_max_temp	"SELECT\nMIN(temp) AS min_temp,\nMAX(temp) AS max_temp\nFROM FLOWFILE\nWHERE MONTH(CAST(noted_date AS DATE)) IN (3, 4 ,5)\n"
+dbf-default-scale	"0"
+propertyDescriptors	
+dbf-default-precision	
+name	"dbf-default-precision"
+displayName	"Default Decimal Precision"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+in_only	
+name	"in_only"
+displayName	"in_only"
+identifiesControllerService	false
+sensitive	false
+dynamic	true
+record-writer	
+name	"record-writer"
+displayName	"Record Writer"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+record-reader	
+name	"record-reader"
+displayName	"Record Reader"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+include-zero-record-flowfiles	
+name	"include-zero-record-flowfiles"
+displayName	"Include Zero Record FlowFiles"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+min_max_temp	
+name	"min_max_temp"
+displayName	"min_max_temp"
+identifiesControllerService	false
+sensitive	false
+dynamic	true
+dbf-default-scale	
+name	"dbf-default-scale"
+displayName	"Default Decimal Scale"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+style	{}
+schedulingPeriod	"0 sec"
+schedulingStrategy	"TIMER_DRIVEN"
+executionNode	"ALL"
+penaltyDuration	"30 sec"
+yieldDuration	"1 sec"
+bulletinLevel	"WARN"
+runDurationMillis	0
+concurrentlySchedulableTaskCount	1
+autoTerminatedRelationships	
+0	"original"
+1	"failure"
+scheduledState	"ENABLED"
+retryCount	10
+retriedRelationships	[]
+backoffMechanism	"PENALIZE_FLOWFILE"
+maxBackoffPeriod	"10 mins"
+componentType	"PROCESSOR"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+2	
+identifier	"abfc972d-6065-35a2-981a-0ae3182271b3"
+instanceIdentifier	"af155314-0194-1000-40ec-44d7b07b2f7f"
+name	"GetFile"
+comments	""
+position	
+x	-136
+y	-328
+type	"org.apache.nifi.processors.standard.GetFile"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-standard-nar"
+version	"2.1.0"
+properties	
+Keep Source File	"true"
+Minimum File Age	"0 sec"
+Polling Interval	"0 sec"
+Input Directory	"/opt/nifi/nifi-current/data"
+Maximum File Age	null
+Batch Size	"10"
+Maximum File Size	null
+Minimum File Size	"0 B"
+Ignore Hidden Files	"true"
+Recurse Subdirectories	"true"
+File Filter	"IOT-temp.csv"
+Path Filter	null
+propertyDescriptors	
+Keep Source File	
+name	"Keep Source File"
+displayName	"Keep Source File"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Minimum File Age	
+name	"Minimum File Age"
+displayName	"Minimum File Age"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Polling Interval	
+name	"Polling Interval"
+displayName	"Polling Interval"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Input Directory	
+name	"Input Directory"
+displayName	"Input Directory"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Maximum File Age	
+name	"Maximum File Age"
+displayName	"Maximum File Age"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Batch Size	
+name	"Batch Size"
+displayName	"Batch Size"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Maximum File Size	
+name	"Maximum File Size"
+displayName	"Maximum File Size"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Minimum File Size	
+name	"Minimum File Size"
+displayName	"Minimum File Size"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Ignore Hidden Files	
+name	"Ignore Hidden Files"
+displayName	"Ignore Hidden Files"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Recurse Subdirectories	
+name	"Recurse Subdirectories"
+displayName	"Recurse Subdirectories"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+File Filter	
+name	"File Filter"
+displayName	"File Filter"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Path Filter	
+name	"Path Filter"
+displayName	"Path Filter"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+style	{}
+schedulingPeriod	"0 sec"
+schedulingStrategy	"TIMER_DRIVEN"
+executionNode	"ALL"
+penaltyDuration	"30 sec"
+yieldDuration	"1 sec"
+bulletinLevel	"WARN"
+runDurationMillis	0
+concurrentlySchedulableTaskCount	1
+autoTerminatedRelationships	[]
+scheduledState	"ENABLED"
+retryCount	10
+retriedRelationships	[]
+backoffMechanism	"PENALIZE_FLOWFILE"
+maxBackoffPeriod	"10 mins"
+componentType	"PROCESSOR"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+inputPorts	[]
+outputPorts	[]
+connections	
+0	
+identifier	"3658afb9-b428-34fd-88f7-8cdd8e09958f"
+instanceIdentifier	"b45f8ca4-0194-1000-cc86-8ff98d36eed1"
+name	""
+source	
+id	"05431c84-90ff-35a8-a889-d52f14d445fa"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"QueryRecord"
+comments	""
+instanceIdentifier	"af2702e4-0194-1000-39b5-5f61e78df7c8"
+destination	
+id	"49ac613b-8305-3647-a282-cf19840f8b20"
+type	"FUNNEL"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"Funnel"
+comments	""
+instanceIdentifier	"b45adcae-0194-1000-0bcc-a55ef19e8cd3"
+labelIndex	0
+zIndex	0
+selectedRelationships	
+0	"min_max_temp"
+backPressureObjectThreshold	10000
+backPressureDataSizeThreshold	"1 GB"
+flowFileExpiration	"0 sec"
+prioritizers	[]
+bends	[]
+loadBalanceStrategy	"DO_NOT_LOAD_BALANCE"
+partitioningAttribute	""
+loadBalanceCompression	"DO_NOT_COMPRESS"
+componentType	"CONNECTION"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+1	
+identifier	"f8494efd-392a-3400-88d5-172287885f3b"
+instanceIdentifier	"b47e4d10-0194-1000-27e6-60d7d2092411"
+name	""
+source	
+id	"4b6196da-eeda-387e-9582-8b78f7948b41"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"UpdateRecord"
+comments	""
+instanceIdentifier	"b47795d7-0194-1000-b908-f5f551f96f64"
+destination	
+id	"05431c84-90ff-35a8-a889-d52f14d445fa"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"QueryRecord"
+comments	""
+instanceIdentifier	"af2702e4-0194-1000-39b5-5f61e78df7c8"
+labelIndex	0
+zIndex	0
+selectedRelationships	
+0	"success"
+backPressureObjectThreshold	10000
+backPressureDataSizeThreshold	"1 GB"
+flowFileExpiration	"0 sec"
+prioritizers	[]
+bends	[]
+loadBalanceStrategy	"DO_NOT_LOAD_BALANCE"
+partitioningAttribute	""
+loadBalanceCompression	"DO_NOT_COMPRESS"
+componentType	"CONNECTION"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+2	
+identifier	"b8fcd2b7-b682-3d4e-b1a7-7a2c9050f720"
+instanceIdentifier	"af2746fc-0194-1000-a8ad-2fb0f7649f0b"
+name	""
+source	
+id	"abfc972d-6065-35a2-981a-0ae3182271b3"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"GetFile"
+comments	""
+instanceIdentifier	"af155314-0194-1000-40ec-44d7b07b2f7f"
+destination	
+id	"4b6196da-eeda-387e-9582-8b78f7948b41"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"UpdateRecord"
+comments	""
+instanceIdentifier	"b47795d7-0194-1000-b908-f5f551f96f64"
+labelIndex	0
+zIndex	0
+selectedRelationships	
+0	"success"
+backPressureObjectThreshold	10000
+backPressureDataSizeThreshold	"1 GB"
+flowFileExpiration	"0 sec"
+prioritizers	[]
+bends	[]
+loadBalanceStrategy	"DO_NOT_LOAD_BALANCE"
+partitioningAttribute	""
+loadBalanceCompression	"DO_NOT_COMPRESS"
+componentType	"CONNECTION"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+3	
+identifier	"bffcb209-1454-3ad6-8977-558454ef4ccb"
+instanceIdentifier	"b4a492e4-0194-1000-233b-167fccc94ada"
+name	""
+source	
+id	"05431c84-90ff-35a8-a889-d52f14d445fa"
+type	"PROCESSOR"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"QueryRecord"
+comments	""
+instanceIdentifier	"af2702e4-0194-1000-39b5-5f61e78df7c8"
+destination	
+id	"faeaa482-0cf3-3885-bfcf-7e359ad89982"
+type	"FUNNEL"
+groupId	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+name	"Funnel"
+comments	""
+instanceIdentifier	"b4a477c3-0194-1000-b756-e33c200bc36d"
+labelIndex	0
+zIndex	0
+selectedRelationships	
+0	"in_only"
+backPressureObjectThreshold	10000
+backPressureDataSizeThreshold	"1 GB"
+flowFileExpiration	"0 sec"
+prioritizers	[]
+bends	[]
+loadBalanceStrategy	"DO_NOT_LOAD_BALANCE"
+partitioningAttribute	""
+loadBalanceCompression	"DO_NOT_COMPRESS"
+componentType	"CONNECTION"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+labels	[]
+funnels	
+0	
+identifier	"49ac613b-8305-3647-a282-cf19840f8b20"
+instanceIdentifier	"b45adcae-0194-1000-0bcc-a55ef19e8cd3"
+position	
+x	-304
+y	392
+componentType	"FUNNEL"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+1	
+identifier	"faeaa482-0cf3-3885-bfcf-7e359ad89982"
+instanceIdentifier	"b4a477c3-0194-1000-b756-e33c200bc36d"
+position	
+x	174.12218724051854
+y	423.2671100028057
+componentType	"FUNNEL"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+controllerServices	
+0	
+identifier	"5ce65569-744f-3e8b-84fe-7ad769879a19"
+instanceIdentifier	"af2af747-0194-1000-a3cc-cd201d9bd483"
+name	"CSVReader"
+comments	""
+type	"org.apache.nifi.csv.CSVReader"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-record-serialization-services-nar"
+version	"2.1.0"
+properties	
+schema-reference-reader	null
+ignore-csv-header	"false"
+schema-branch	null
+Trim double quote	"true"
+CSV Format	"custom"
+Quote Character	'"'
+csvutils-allow-duplicate-header-names	"true"
+Value Separator	","
+Record Separator	"\\n"
+Timestamp Format	null
+Escape Character	"\\"
+Date Format	null
+Null String	null
+Skip Header Line	"false"
+Trim Fields	"true"
+schema-name	"${schema.name}"
+schema-registry	null
+csv-reader-csv-parser	"commons-csv"
+Time Format	null
+Comment Marker	null
+schema-access-strategy	"csv-header-derived"
+schema-version	null
+csvutils-character-set	"UTF-8"
+schema-text	"${avro.schema}"
+propertyDescriptors	
+schema-reference-reader	
+name	"schema-reference-reader"
+displayName	"Schema Reference Reader"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+ignore-csv-header	
+name	"ignore-csv-header"
+displayName	"Ignore CSV Header Column Names"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-branch	
+name	"schema-branch"
+displayName	"Schema Branch"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Trim double quote	
+name	"Trim double quote"
+displayName	"Trim double quote"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+CSV Format	
+name	"CSV Format"
+displayName	"CSV Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Quote Character	
+name	"Quote Character"
+displayName	"Quote Character"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+csvutils-allow-duplicate-header-names	
+name	"csvutils-allow-duplicate-header-names"
+displayName	"Allow Duplicate Header Names"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Value Separator	
+name	"Value Separator"
+displayName	"Value Separator"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Record Separator	
+name	"Record Separator"
+displayName	"Record Separator"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Timestamp Format	
+name	"Timestamp Format"
+displayName	"Timestamp Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Escape Character	
+name	"Escape Character"
+displayName	"Escape Character"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Date Format	
+name	"Date Format"
+displayName	"Date Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Null String	
+name	"Null String"
+displayName	"Null String"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Skip Header Line	
+name	"Skip Header Line"
+displayName	"Treat First Line as Header"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Trim Fields	
+name	"Trim Fields"
+displayName	"Trim Fields"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-name	
+name	"schema-name"
+displayName	"Schema Name"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-registry	
+name	"schema-registry"
+displayName	"Schema Registry"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+csv-reader-csv-parser	
+name	"csv-reader-csv-parser"
+displayName	"CSV Parser"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Time Format	
+name	"Time Format"
+displayName	"Time Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Comment Marker	
+name	"Comment Marker"
+displayName	"Comment Marker"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-access-strategy	
+name	"schema-access-strategy"
+displayName	"Schema Access Strategy"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-version	
+name	"schema-version"
+displayName	"Schema Version"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+csvutils-character-set	
+name	"csvutils-character-set"
+displayName	"Character Set"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-text	
+name	"schema-text"
+displayName	"Schema Text"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+controllerServiceApis	
+0	
+type	"org.apache.nifi.serialization.RecordReaderFactory"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-standard-services-api-nar"
+version	"2.1.0"
+scheduledState	"DISABLED"
+bulletinLevel	"WARN"
+componentType	"CONTROLLER_SERVICE"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+1	
+identifier	"a063b5e1-5c63-3a88-a324-88701d9dfb77"
+instanceIdentifier	"b39819a4-0194-1000-ce36-531da8046cf7"
+name	"CSVRecordSetWriter"
+comments	""
+type	"org.apache.nifi.csv.CSVRecordSetWriter"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-record-serialization-services-nar"
+version	"2.1.0"
+properties	
+schema-reference-reader	null
+schema-branch	null
+CSV Format	"custom"
+Include Header Line	"true"
+schema-cache	null
+Escape Character	"\\"
+Date Format	null
+Null String	null
+Trim Fields	"true"
+schema-registry	null
+Time Format	null
+Comment Marker	null
+schema-access-strategy	"inherit-record-schema"
+schema-version	null
+csvutils-character-set	"UTF-8"
+schema-text	"${avro.schema}"
+csv-writer	"commons-csv"
+Quote Character	'"'
+Value Separator	","
+Record Separator	"\\n"
+Timestamp Format	null
+Schema Write Strategy	"no-schema"
+schema-name	"${schema.name}"
+Quote Mode	"MINIMAL"
+Schema Reference Writer	null
+Include Trailing Delimiter	"false"
+propertyDescriptors	
+schema-reference-reader	
+name	"schema-reference-reader"
+displayName	"Schema Reference Reader"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+schema-branch	
+name	"schema-branch"
+displayName	"Schema Branch"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+CSV Format	
+name	"CSV Format"
+displayName	"CSV Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Include Header Line	
+name	"Include Header Line"
+displayName	"Include Header Line"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-cache	
+name	"schema-cache"
+displayName	"Schema Cache"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+Escape Character	
+name	"Escape Character"
+displayName	"Escape Character"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Date Format	
+name	"Date Format"
+displayName	"Date Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Null String	
+name	"Null String"
+displayName	"Null String"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Trim Fields	
+name	"Trim Fields"
+displayName	"Trim Fields"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-registry	
+name	"schema-registry"
+displayName	"Schema Registry"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+Time Format	
+name	"Time Format"
+displayName	"Time Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Comment Marker	
+name	"Comment Marker"
+displayName	"Comment Marker"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-access-strategy	
+name	"schema-access-strategy"
+displayName	"Schema Access Strategy"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-version	
+name	"schema-version"
+displayName	"Schema Version"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+csvutils-character-set	
+name	"csvutils-character-set"
+displayName	"Character Set"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-text	
+name	"schema-text"
+displayName	"Schema Text"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+csv-writer	
+name	"csv-writer"
+displayName	"CSV Writer"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Quote Character	
+name	"Quote Character"
+displayName	"Quote Character"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Value Separator	
+name	"Value Separator"
+displayName	"Value Separator"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Record Separator	
+name	"Record Separator"
+displayName	"Record Separator"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Timestamp Format	
+name	"Timestamp Format"
+displayName	"Timestamp Format"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Schema Write Strategy	
+name	"Schema Write Strategy"
+displayName	"Schema Write Strategy"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+schema-name	
+name	"schema-name"
+displayName	"Schema Name"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Quote Mode	
+name	"Quote Mode"
+displayName	"Quote Mode"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+Schema Reference Writer	
+name	"Schema Reference Writer"
+displayName	"Schema Reference Writer"
+identifiesControllerService	true
+sensitive	false
+dynamic	false
+Include Trailing Delimiter	
+name	"Include Trailing Delimiter"
+displayName	"Include Trailing Delimiter"
+identifiesControllerService	false
+sensitive	false
+dynamic	false
+controllerServiceApis	
+0	
+type	"org.apache.nifi.serialization.RecordSetWriterFactory"
+bundle	
+group	"org.apache.nifi"
+artifact	"nifi-standard-services-api-nar"
+version	"2.1.0"
+scheduledState	"DISABLED"
+bulletinLevel	"WARN"
+componentType	"CONTROLLER_SERVICE"
+groupIdentifier	"d721f5c6-4f88-36c1-961c-f7b1541f994b"
+defaultFlowFileExpiration	"0 sec"
+defaultBackPressureObjectThreshold	10000
+defaultBackPressureDataSizeThreshold	"1 GB"
+scheduledState	"ENABLED"
+executionEngine	"INHERITED"
+maxConcurrentTasks	1
+statelessFlowTimeout	"1 min"
+flowFileConcurrency	"UNBOUNDED"
+flowFileOutboundPolicy	"STREAM_WHEN_AVAILABLE"
+componentType	"PROCESS_GROUP"
+externalControllerServices	{}
+parameterContexts	{}
+flowEncodingVersion	"1.0"
+parameterProviders	{}
+latest	false
